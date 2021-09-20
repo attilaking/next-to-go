@@ -1,9 +1,9 @@
 import React from 'react';
-import style from '../style/components/header.scss'
+import '../style/components/header.scss'
 
 const Header = (props) => {
     return (
-        <div>
+        <div className="headerCont">
             {props.Title}
         </div>
     )
