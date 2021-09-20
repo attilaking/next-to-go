@@ -2,7 +2,7 @@
 
 This single page application displays 5 races at a time, each race will dissapear after one minute. 
 
-## Instalation
+## Installation
 
 - Clone project
 - Run 'npm i' to install dependencies
