@@ -1,22 +1,28 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import './App.css';
+import './style/App.scss';
+import Header from './components/Header';
 
 function App() {
-  const [date, setDate] = useState(null);
+  const [races, setRaces] = useState(null);
   useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
+    async function getRaceData() {
+      const res = await fetch('https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=10');
+      const raceData = await res.text();
+      setRaces(raceData);
     }
-    getDate();
+    getRaceData();
   }, []);
-  return (
-    <main>
-      
 
-    </main>
+  useEffect(() => {
+    console.log(races)
+  }, [races])
+  return (
+    <>
+      <Header Title="Next To Go" />
+      <main>
+      </main>
+    </>
   );
 }
 
