@@ -21,14 +21,16 @@ function App() {
       .then(raceData => {
         let dataArray = [];
         let dataObject = raceData.data.race_summaries;
+
         for (const prop in dataObject) {
 
           dataArray.push(
             {
-              "meeting_name" : dataObject[prop]["meeting_name"],
-              "race_number" : dataObject[prop]["race_number"],
-              "race_id" : dataObject[prop]["race_id"],
-              "advertised_start" : dataObject[prop]["advertised_start"],
+              "meeting_name": dataObject[prop]["meeting_name"],
+              "race_number": dataObject[prop]["race_number"],
+              "race_id": dataObject[prop]["race_id"],
+              "category_id": dataObject[prop]["category_id"],
+              "advertised_start": dataObject[prop]["advertised_start"],
             }
           )
         }
@@ -43,10 +45,6 @@ function App() {
     getRaceData();
   }, []);
 
-  useEffect(() => {
-    console.log(races)
-  }, [races])
-
   if (!races)
     return (
       <LoadingSpinner Backdrop={true} />
@@ -56,7 +54,7 @@ function App() {
       <>
         <Header Title="Next To Go App" />
         <main>
-          <RacesList ListData={races} />
+          <RacesList ListData={races} Config={{ "maxNrOfItems": 5}} />
         </main>
       </>
     );
