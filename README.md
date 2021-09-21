@@ -49,3 +49,9 @@ For testing, run:
 npm run test
 ```
 
+### Contact
+
+Name: Max Attila King
+Email: m.attila@outlook.com
+LinkedIn: https://www.linkedin.com/in/attilaking/
+
