@@ -1,6 +1,6 @@
 # Next To Go App
 
-This single page application displays 5 races at a time, each race will dissapear after one minute. 
+This single page application displays 5 "next to go" races at a time, each race will disapear after one minute. Meeting name, race number and time left are displayed.
 
 ## Installation
 
@@ -11,3 +11,7 @@ This single page application displays 5 races at a time, each race will dissapea
 ## Live Demo
 
 https://next-to-go.vercel.app
+
+## How To use
+
+All you have to do is to select a category that you would like to display. The first category will be displayed by default. 
