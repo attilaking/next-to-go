@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Timer = (props) => {
+const Timer = ({onTimeElapsed, config}) => {
 
     const [timeLeft, setTimeLeft] = useState(null);
 
     useEffect(() => {
         let timer = setInterval(() => {
             let now = Math.round(new Date().getTime() / 1000);
-            setTimeLeft(props.Config.startTime - now);
+            setTimeLeft(config.startTime - now);
         }, 1000);
         return () => clearInterval(timer);
     }, []);
 
     useEffect(() => {
-        if (timeLeft && timeLeft <= -props.Config.removeTime) {
-            props.OnTimeElapsed(props.Config.itemId);
+        if (timeLeft && timeLeft <= -config.removeTime) {
+            onTimeElapsed(config.itemId);
         }
     }, [timeLeft])
 
@@ -29,8 +29,8 @@ const Timer = (props) => {
 }
 
 Timer.propTypes = {
-    OnTimeElapsed: PropTypes.func,
-    Config: PropTypes.object
+    onTimeElapsed: PropTypes.func,
+    config: PropTypes.object
 };
 
 export default Timer;

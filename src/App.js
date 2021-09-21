@@ -59,13 +59,14 @@ function App() {
     <>
       <AppErrorBoundary>
         {!races ?
-          <LoadingSpinner Error={errorMessage} /> :
+          <LoadingSpinner error={errorMessage} /> :
           <>
-            <Header Title="Next To Go App" />
+            <Header title="Next To Go App" />
             <main>
-              <RacesList ListData={races} Config={{ 'maxNrOfItems': 5, 'sort': 'asc', 'removeTime': 60 }} />
+              <RacesList listData={races} config={{ 'maxNrOfItems': 5, 'sort': 'asc', 'removeTime': 60 }} />
             </main>
-          </>}
+          </>
+        }
       </AppErrorBoundary>
     </>
   );

@@ -6,20 +6,21 @@ import Timer from '../components/Timer';
 import configData from '../config.json';
 import '../style/components/racesList.scss';
 
-const RacesList = (props) => {
+const RacesList = ({listData, config}) => {
+
     let listItems = 'No data to display';
     const [elapsedItems, setElapsedItems] = useState([]);
-    const [listOrder, setListOrder] = useState(props.Config.sort);
-    const [maxNrOfItems, setmaxNrOfItems] = useState(props.Config.maxNrOfItems);
+    const [listOrder, setListOrder] = useState(config.sort);
+    const [maxNrOfItems, setmaxNrOfItems] = useState(config.maxNrOfItems);
 
     const onItemTimeElapsed = (id) => setElapsedItems(oldArray => [...oldArray, id]);
     const [selectedCategory, setSelectedCategory] = useState(0);
 
-    if (props.ListData) {
+    if (listData) {
 
         let sortedListData = listOrder === 'asc' ?
-            props.ListData.sort((a, b) => parseInt(a.advertised_start.seconds) - parseInt(b.advertised_start.seconds)) :
-            props.ListData.sort((a, b) => parseInt(b.advertised_start.seconds) - parseInt(a.advertised_start.seconds));
+            listData.sort((a, b) => parseInt(a.advertised_start.seconds) - parseInt(b.advertised_start.seconds)) :
+            listData.sort((a, b) => parseInt(b.advertised_start.seconds) - parseInt(a.advertised_start.seconds));
 
         let sortedFilteredListData = sortedListData
             .filter(item => !elapsedItems.includes(item.race_id) && (item.category_id === selectedCategory || selectedCategory == 0));
@@ -33,11 +34,11 @@ const RacesList = (props) => {
                         <td>{item.race_number}</td>
                         <td>
                             <Timer
-                                OnTimeElapsed={(id) => onItemTimeElapsed(id)}
-                                Config={{
+                                onTimeElapsed={(id) => onItemTimeElapsed(id)}
+                                config={{
                                     'startTime': item.advertised_start.seconds,
                                     'itemId': item.race_id,
-                                    'removeTime': props.Config.removeTime
+                                    'removeTime': config.removeTime
                                 }} />
                         </td>
                     </tr>
@@ -53,7 +54,7 @@ const RacesList = (props) => {
         setmaxNrOfItems(listItems.length);
 
     useEffect(() => {
-        setmaxNrOfItems(props.Config.maxNrOfItems)
+        setmaxNrOfItems(config.maxNrOfItems)
     }, [selectedCategory]);
 
     return (
@@ -94,23 +95,26 @@ const RacesList = (props) => {
                         {listItems}
                     </tbody>
                 </table>
+
                 {listItems.length > maxNrOfItems ?
                     <span onClick={onShowMore} className="racesDisplayCont__content__showMore">
                         Show all...
                     </span> : <></>
                 }
+
                 {listItems.length < 1 ?
                     <span>
                         No data to show
-                    </span> : <></>}
+                    </span> : <></>
+                }
             </div>
         </div>
     )
 }
 
 RacesList.propTypes = {
-    ListData: PropTypes.array,
-    Config: PropTypes.object
+    listData: PropTypes.array,
+    config: PropTypes.object
 };
 
 export default RacesList;

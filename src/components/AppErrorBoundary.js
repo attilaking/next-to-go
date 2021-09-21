@@ -16,7 +16,7 @@ class AppErrorBoundary extends Component {
       const { error, errorMessage } = this.state;
       const { children } = this.props;
   
-      return error ? <LoadingSpinner Error={this.state.errorMessage} /> : children;
+      return error ? <LoadingSpinner error={this.state.errorMessage} /> : children;
     }
   }
 

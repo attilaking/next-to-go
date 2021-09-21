@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import '../style/components/header.scss'
 
-const Header = (props) => {
+const Header = ({title}) => {
     return (
         <div className="headerCont">
-            {props.Title}
+            {title}
         </div>
     )
 }
 
 Header.propTypes = {
-    Title: PropTypes.string
+    title: PropTypes.string
   };
 
 export default Header;

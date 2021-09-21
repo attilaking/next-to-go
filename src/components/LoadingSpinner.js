@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import '../style/components/loadingSpinner.scss'
 
-const LoadingSpinner = (props) => {
+const LoadingSpinner = ({error}) => {
     let emptyDivs = [];
     for (let i = 0; i < 9; i++) {
         emptyDivs.push(<div key={i}></div>);
@@ -12,13 +12,13 @@ const LoadingSpinner = (props) => {
     return (
         <>
             <div className="loadingSpinnerCont">
-                {!props.Error ?
+                {!error ?
                     <div className="loadingSpinnerCont dot-grid">
                         {emptyDivs}
                     </div>
                     :
                     <div className="loadingSpinnerCont__error">
-                        {props.Error}
+                        {error}
                     </div>
                 }
             </div>
@@ -27,7 +27,7 @@ const LoadingSpinner = (props) => {
 }
 
 LoadingSpinner.propTypes = {
-    Error: PropTypes.string
+    error: PropTypes.string
   };
 
 export default LoadingSpinner;
