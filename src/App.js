@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import RacesList from './components/RacesList';
 import LoadingSpinner from './components/LoadingSpinner';
+import AppErrorBoundary from './components/AppErrorBoundary';
 
 import './style/App.scss';
 import configData from './config.json';
@@ -56,14 +57,16 @@ function App() {
 
   return (
     <>
-      {!races ?
-        <LoadingSpinner Backdrop={true} Error={errorMessage} /> :
-        <>
-          <Header Title="Next To Go App" />
-          <main>
-            <RacesList ListData={races} Config={{ 'maxNrOfItems': 5, 'sort': 'asc', 'removeTime' : 60 }} />
-          </main>
-        </>}
+      <AppErrorBoundary>
+        {!races ?
+          <LoadingSpinner Error={errorMessage} /> :
+          <>
+            <Header Title="Next To Go App" />
+            <main>
+              <RacesList ListData={races} Config={{ 'maxNrOfItems': 5, 'sort': 'asc', 'removeTime': 60 }} />
+            </main>
+          </>}
+      </AppErrorBoundary>
     </>
   );
 }

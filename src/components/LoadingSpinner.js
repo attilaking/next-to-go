@@ -27,8 +27,7 @@ const LoadingSpinner = (props) => {
 }
 
 LoadingSpinner.propTypes = {
-    Error: PropTypes.string,
-    Backdrp: PropTypes.bool
+    Error: PropTypes.string
   };
 
 export default LoadingSpinner;
