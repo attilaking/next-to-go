@@ -43,6 +43,8 @@ I haven't added any additional dependencies to the app, apart from SASS.
 
 ### Testing
 
+I am studying testing React frameworks, Jest in particular, I am expecting to be up to speed in testing in about 2 weeks. 
+
 For testing, run:
 
 ```
