@@ -43,7 +43,7 @@ I haven't added any additional dependencies to the app, apart from SASS.
 
 ### Testing
 
-For testing, I have used Jest. To run the tests, run 
+For testing, run:
 
 ```
 npm run test
