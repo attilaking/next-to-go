@@ -14,7 +14,7 @@ function App() {
     fetch(configData.API_URL)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network error');
         }
         return response.json();
       })
@@ -54,7 +54,7 @@ function App() {
       <>
         <Header Title="Next To Go App" />
         <main>
-          <RacesList ListData={races} Config={{ "maxNrOfItems": 5}} />
+          <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort" : "asc"}} />
         </main>
       </>
     );
