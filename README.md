@@ -22,3 +22,7 @@ I have decided not to use Redux or even Context API, as the application size is 
 
 While keeping the style inside the code in the component might be beneficial in many cases, I wanted to exploit the advantagaes that SASS offers, so I used external SASS files and import them in the component.
 
+## Dependencies
+
+I haven't add any additional dependencies to the app, apart from SASS. 
+
