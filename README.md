@@ -2,6 +2,21 @@
 
 This single page application displays 5 "next to go" races at a time, each race will disapear after one minute. Meeting name, race number and time left are displayed.
 
+### Customer Requirements
+
+#### Functional requirements
+
+- Maximum 5 races should be displayed
+- Races should be sorted time ascending
+- Race should disappear from the list after 1 min past the start time
+- User should see meeting name ( meeting_name ), race number ( race_number ) and countdown timer that indicates the start of the race
+- User should be able to toggle race categories to view races belonging to only the selected category.
+
+#### Non-functional requirements
+
+- App should be implemented in React
+- App should use API provided
+
 ### Installation
 
 - Clone project
