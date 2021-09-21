@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../style/components/racesList.scss';
+
 import Timer from '../components/Timer';
-import configData from "../config.json";
+
+import configData from '../config.json';
+import '../style/components/racesList.scss';
 
 const RacesList = (props) => {
-    let listItems = "No data to display";
+    let listItems = 'No data to display';
     const [elapsedItems, setElapsedItems] = useState([]);
     const [listOrder, setListOrder] = useState(props.Config.sort);
 
@@ -14,12 +16,13 @@ const RacesList = (props) => {
 
     if (props.ListData) {
 
-        let sortedListData = listOrder === "asc" ?
+        let sortedListData = listOrder === 'asc' ?
             props.ListData.sort((a, b) => parseInt(a.advertised_start.seconds) - parseInt(b.advertised_start.seconds)) :
             props.ListData.sort((a, b) => parseInt(b.advertised_start.seconds) - parseInt(a.advertised_start.seconds));
         let sortedFilteredListData = sortedListData.filter(item => !elapsedItems.includes(item.race_id) && item.category_id === selectedCategory);
 
         listItems = sortedFilteredListData.map((item, index) => {
+            
             if (index < props.Config.maxNrOfItems) {
                 return (
                     <tr key={item.race_id.toString()}>
@@ -29,9 +32,9 @@ const RacesList = (props) => {
                             <Timer
                                 OnTimeElapsed={(id) => onItemTimeElapsed(id)}
                                 Config={{
-                                    "startTime": item.advertised_start.seconds,
-                                    "itemId": item.race_id,
-                                    "removeTime": props.Config.removeTime
+                                    'startTime': item.advertised_start.seconds,
+                                    'itemId': item.race_id,
+                                    'removeTime': props.Config.removeTime
                                 }} />
                         </td>
                     </tr>
@@ -59,10 +62,10 @@ const RacesList = (props) => {
                     </select>
                     <select className="minimal" onChange={(e) => setListOrder(e.target.value)} value={listOrder}>
                             <option value="asc">
-                                Ascending
+                                Ascending (time)
                             </option>
                             <option value="desc">
-                                Descending
+                                Descending (time)
                             </option>
      
                     </select>

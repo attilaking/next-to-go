@@ -21,7 +21,7 @@ const Timer = (props) => {
 
     return (
         <div>
-            {timeLeft ? timeLeft <= 0 ? `${timeLeft}s` : new Date(timeLeft * 1000).toISOString().substr(11, 8) : "-"}
+            {timeLeft ? timeLeft <= 0 ? `${timeLeft}s` : new Date(timeLeft * 1000).toISOString().substr(11, 8) : '-'}
         </div>
     )
 }
