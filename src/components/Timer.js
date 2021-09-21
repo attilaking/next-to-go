@@ -13,22 +13,22 @@ const Timer = (props) => {
         return () => clearInterval(timer);
     }, []);
 
-    useEffect(()=> {
-        if (timeLeft && timeLeft <= -props.Config.removeTime){
+    useEffect(() => {
+        if (timeLeft && timeLeft <= -props.Config.removeTime) {
             props.OnTimeElapsed(props.Config.itemId);
         }
-    },[timeLeft])
+    }, [timeLeft])
 
     return (
-        <div>
+        <>
             {timeLeft ? timeLeft <= 0 ? `${timeLeft}s` : new Date(timeLeft * 1000).toISOString().substr(11, 8) : '-'}
-        </div>
+        </>
     )
 }
 
 Timer.propTypes = {
     OnTimeElapsed: PropTypes.func,
     Config: PropTypes.object
-  };
+};
 
 export default Timer;

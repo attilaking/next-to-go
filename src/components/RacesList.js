@@ -22,7 +22,7 @@ const RacesList = (props) => {
         let sortedFilteredListData = sortedListData.filter(item => !elapsedItems.includes(item.race_id) && item.category_id === selectedCategory);
 
         listItems = sortedFilteredListData.map((item, index) => {
-            
+
             if (index < props.Config.maxNrOfItems) {
                 return (
                     <tr key={item.race_id.toString()}>
@@ -61,13 +61,13 @@ const RacesList = (props) => {
                         )}
                     </select>
                     <select className="minimal" onChange={(e) => setListOrder(e.target.value)} value={listOrder}>
-                            <option value="asc">
-                                Ascending (time)
-                            </option>
-                            <option value="desc">
-                                Descending (time)
-                            </option>
-     
+                        <option value="asc">
+                            Ascending (time)
+                        </option>
+                        <option value="desc">
+                            Descending (time)
+                        </option>
+
                     </select>
                 </div>
                 <table>
@@ -82,6 +82,7 @@ const RacesList = (props) => {
                         {listItems}
                     </tbody>
                 </table>
+                {listItems.length < 1 ? <span>No data to show</span> : <></>}
             </div>
         </div>
     )
@@ -90,6 +91,6 @@ const RacesList = (props) => {
 RacesList.propTypes = {
     ListData: PropTypes.array,
     Config: PropTypes.object
-  };
+};
 
 export default RacesList;

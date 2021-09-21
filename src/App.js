@@ -1,10 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import './style/App.scss';
+
 import Header from './components/Header';
 import RacesList from './components/RacesList';
 import LoadingSpinner from './components/LoadingSpinner';
-import configData from "./config.json";
+
+import './style/App.scss';
+import configData from './config.json';
 
 function App() {
 
@@ -19,7 +21,7 @@ function App() {
     })
       .then(response => {
         if (!response.ok) {
-          setErrorMessage("A network error has occured")
+          setErrorMessage('A network error has occured')
         }
         return response.json();
       })
@@ -57,7 +59,7 @@ function App() {
         <>
           <Header Title="Next To Go App" />
           <main>
-            <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort": "asc", "removeTime" : 60 }} />
+            <RacesList ListData={races} Config={{ 'maxNrOfItems': 5, 'sort': 'asc', 'removeTime' : 60 }} />
           </main>
         </>}
     </>
