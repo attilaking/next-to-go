@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import '../style/components/racesList.scss';
 import Timer from '../components/Timer';
 import configData from "../config.json";
@@ -30,7 +31,7 @@ const RacesList = (props) => {
                                 Config={{
                                     "startTime": item.advertised_start.seconds,
                                     "itemId": item.race_id,
-                                    "removeTime": props.Config.removetime
+                                    "removeTime": props.Config.removeTime
                                 }} />
                         </td>
                     </tr>
@@ -82,5 +83,10 @@ const RacesList = (props) => {
         </div>
     )
 }
+
+RacesList.propTypes = {
+    ListData: PropTypes.array,
+    Config: PropTypes.object
+  };
 
 export default RacesList;
