@@ -52,11 +52,12 @@ function App() {
 
   return (
     <>
-      {!races ? <LoadingSpinner Backdrop={true} Error={errorMessage}/> :
+      {!races ?
+        <LoadingSpinner Backdrop={true} Error={errorMessage} /> :
         <>
           <Header Title="Next To Go App" />
           <main>
-            <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort": "asc" }} />
+            <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort": "asc", "removeTime" : 60 }} />
           </main>
         </>}
     </>

@@ -6,16 +6,17 @@ import configData from "../config.json";
 const RacesList = (props) => {
     let listItems = "No data to display";
     const [elapsedItems, setElapsedItems] = useState([]);
+    const [listOrder, setListOrder] = useState(props.Config.sort);
 
     const onItemTimeElapsed = (id) => setElapsedItems(oldArray => [...oldArray, id]);
     const [selectedCategory, setSelectedCategory] = useState(configData.CATEGORIES[0].id);
 
     if (props.ListData) {
 
-        let sortedListData = props.Config.sort === "asc" ?
+        let sortedListData = listOrder === "asc" ?
             props.ListData.sort((a, b) => parseInt(a.advertised_start.seconds) - parseInt(b.advertised_start.seconds)) :
             props.ListData.sort((a, b) => parseInt(b.advertised_start.seconds) - parseInt(a.advertised_start.seconds));
-        let sortedFilteredListData = sortedListData.filter(item => !elapsedItems.includes(item.race_id) && item.category_id === selectedCategory)
+        let sortedFilteredListData = sortedListData.filter(item => !elapsedItems.includes(item.race_id) && item.category_id === selectedCategory);
 
         listItems = sortedFilteredListData.map((item, index) => {
             if (index < props.Config.maxNrOfItems) {
@@ -29,7 +30,7 @@ const RacesList = (props) => {
                                 Config={{
                                     "startTime": item.advertised_start.seconds,
                                     "itemId": item.race_id,
-                                    "removeTime": "60"
+                                    "removeTime": props.Config.removetime
                                 }} />
                         </td>
                     </tr>
@@ -54,6 +55,15 @@ const RacesList = (props) => {
                                 {item.name}
                             </option>
                         )}
+                    </select>
+                    <select className="minimal" onChange={(e) => setListOrder(e.target.value)} value={listOrder}>
+                            <option value="asc">
+                                Ascending
+                            </option>
+                            <option value="desc">
+                                Descending
+                            </option>
+     
                     </select>
                 </div>
                 <table>
