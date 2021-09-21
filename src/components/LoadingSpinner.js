@@ -6,7 +6,7 @@ import '../style/components/loadingSpinner.scss'
 const LoadingSpinner = (props) => {
     let emptyDivs = [];
     for (let i = 0; i < 9; i++) {
-        emptyDivs.push(<div></div>);
+        emptyDivs.push(<div key={i}></div>);
     }
 
     return (

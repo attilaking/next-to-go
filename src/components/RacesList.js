@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Timer from '../components/Timer';
@@ -10,20 +10,23 @@ const RacesList = (props) => {
     let listItems = 'No data to display';
     const [elapsedItems, setElapsedItems] = useState([]);
     const [listOrder, setListOrder] = useState(props.Config.sort);
+    const [maxNrOfItems, setmaxNrOfItems] = useState(props.Config.maxNrOfItems);
 
     const onItemTimeElapsed = (id) => setElapsedItems(oldArray => [...oldArray, id]);
-    const [selectedCategory, setSelectedCategory] = useState(configData.CATEGORIES[0].id);
+    const [selectedCategory, setSelectedCategory] = useState(0);
 
     if (props.ListData) {
 
         let sortedListData = listOrder === 'asc' ?
             props.ListData.sort((a, b) => parseInt(a.advertised_start.seconds) - parseInt(b.advertised_start.seconds)) :
             props.ListData.sort((a, b) => parseInt(b.advertised_start.seconds) - parseInt(a.advertised_start.seconds));
-        let sortedFilteredListData = sortedListData.filter(item => !elapsedItems.includes(item.race_id) && item.category_id === selectedCategory);
+
+        let sortedFilteredListData = sortedListData
+            .filter(item => !elapsedItems.includes(item.race_id) && (item.category_id === selectedCategory || selectedCategory == 0));
 
         listItems = sortedFilteredListData.map((item, index) => {
 
-            if (index < props.Config.maxNrOfItems) {
+            if (index < maxNrOfItems) {
                 return (
                     <tr key={item.race_id.toString()}>
                         <td>{item.meeting_name}</td>
@@ -46,6 +49,13 @@ const RacesList = (props) => {
         });
     }
 
+    const onShowMore = () =>
+        setmaxNrOfItems(listItems.length);
+
+    useEffect(() => {
+        setmaxNrOfItems(props.Config.maxNrOfItems)
+    }, [selectedCategory]);
+
     return (
         <div className="racesDisplayCont">
             <div className="racesDisplayCont__header">
@@ -54,6 +64,9 @@ const RacesList = (props) => {
             <div className="racesDisplayCont__content">
                 <div className="racesDisplayCont__content__filters">
                     <select className="minimal" onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
+                        <option key={0} value={0}>
+                            All Categories
+                        </option>
                         {configData.CATEGORIES.map(item =>
                             <option key={item.id} value={item.id}>
                                 {item.name}
@@ -67,7 +80,6 @@ const RacesList = (props) => {
                         <option value="desc">
                             Descending (time)
                         </option>
-
                     </select>
                 </div>
                 <table>
@@ -82,7 +94,15 @@ const RacesList = (props) => {
                         {listItems}
                     </tbody>
                 </table>
-                {listItems.length < 1 ? <span>No data to show</span> : <></>}
+                {listItems.length > maxNrOfItems ?
+                    <span onClick={onShowMore} className="racesDisplayCont__content__showMore">
+                        Show all...
+                    </span> : <></>
+                }
+                {listItems.length < 1 ?
+                    <span>
+                        No data to show
+                    </span> : <></>}
             </div>
         </div>
     )
