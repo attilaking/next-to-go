@@ -11,7 +11,14 @@ function App() {
   const [races, setRaces] = useState(null);
 
   async function getRaceData() {
-    fetch(configData.API_URL)
+    fetch(configData.API_URL, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network error');
