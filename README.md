@@ -31,15 +31,15 @@ All you have to do is to select a category that you would like to display. All c
 
 #### State Management
 
-I have decided not to use Redux or even Context API, as the application size is small, keeping the state close to the component that uses it improves performance in this case, using a state management soltion like Redux is not justified. 
+I have decided not to use Redux or even Context API, as the application size is small, keeping the state close to the component that uses it improves performance in this case, using a state management solution like Redux is not justified. 
 
 #### Style
 
-While keeping the style inside the code in the component might be beneficial in many cases, I wanted to exploit the advantagaes that SASS offers, so I used external SASS files and import them in the component.
+While keeping the style inside the code in the components might be beneficial in many cases, in this case I wanted to exploit the advantagaes that SASS offers, so I used external SASS files and import them in the component.
 
 ### Dependencies
 
-I haven't add any additional dependencies to the app, apart from SASS. 
+I haven't added any additional dependencies to the app, apart from SASS. 
 
 ### Testing
 
