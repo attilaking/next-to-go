@@ -47,25 +47,27 @@ const RacesList = (props) => {
                 Races
             </div>
             <div className="racesDisplayCont__content">
-            <select className="minimal" onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
-                {configData.CATEGORIES.map(item =>
-                    <option key={item.id} value={item.id}>
-                        {item.name}
-                    </option>
-                )}
-            </select>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Meeting Name</th>
-                        <th>Race Number</th>
-                        <th>Timer Left</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listItems}
-                </tbody>
-            </table>
+                <div className="racesDisplayCont__content__filters">
+                    <select className="minimal" onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory}>
+                        {configData.CATEGORIES.map(item =>
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        )}
+                    </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Meeting Name</th>
+                            <th>Race Number</th>
+                            <th>Timer Left</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listItems}
+                    </tbody>
+                </table>
             </div>
         </div>
     )
