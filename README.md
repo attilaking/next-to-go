@@ -25,7 +25,7 @@ This single page application displays 5 "next to go" races at a time, each race 
 
 ### How To use
 
-All you have to do is to select a category that you would like to display. The first category will be displayed by default. 
+All you have to do is to select a category that you would like to display. All categories will be selected by default. 
 
 ### Architectural decisions
 
