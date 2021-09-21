@@ -2,7 +2,7 @@
 
 This single page application displays 5 "next to go" races at a time, each race will disapear after one minute. Meeting name, race number and time left are displayed.
 
-### Customer Requirements
+### Requirements
 
 #### Functional requirements
 
