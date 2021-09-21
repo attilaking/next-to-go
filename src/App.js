@@ -15,6 +15,8 @@ function App() {
 
   async function getRaceData() {
     fetch(configData.API_URL, {
+      method: 'GET',
+      mode: 'cors',
       headers: {
         'Content-Type': 'application/json'
       },
