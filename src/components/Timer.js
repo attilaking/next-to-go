@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Timer = (props) => {
 
@@ -24,5 +25,10 @@ const Timer = (props) => {
         </div>
     )
 }
+
+Timer.propTypes = {
+    OnTimeElapsed: PropTypes.func,
+    Config: PropTypes.object
+  };
 
 export default Timer;

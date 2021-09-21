@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../style/components/header.scss'
 
 const Header = (props) => {
@@ -8,5 +9,9 @@ const Header = (props) => {
         </div>
     )
 }
+
+Header.propTypes = {
+    Title: PropTypes.string
+  };
 
 export default Header;
