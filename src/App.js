@@ -9,6 +9,7 @@ import configData from "./config.json";
 function App() {
 
   const [races, setRaces] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   async function getRaceData() {
     fetch(configData.API_URL, {
@@ -18,7 +19,7 @@ function App() {
     })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network error');
+          setErrorMessage("A network error has occured")
         }
         return response.json();
       })
@@ -41,7 +42,7 @@ function App() {
         setRaces(dataArray);
       })
       .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
+        setErrorMessage(`There has been a problem with your fetch operation: ${error}`);
       });
   }
 
@@ -49,19 +50,17 @@ function App() {
     getRaceData();
   }, []);
 
-  if (!races)
-    return (
-      <LoadingSpinner Backdrop={true} />
-    )
-  else
-    return (
-      <>
-        <Header Title="Next To Go App" />
-        <main>
-          <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort" : "asc"}} />
-        </main>
-      </>
-    );
+  return (
+    <>
+      {!races ? <LoadingSpinner Backdrop={true} Error={errorMessage}/> :
+        <>
+          <Header Title="Next To Go App" />
+          <main>
+            <RacesList ListData={races} Config={{ "maxNrOfItems": 5, "sort": "asc" }} />
+          </main>
+        </>}
+    </>
+  );
 }
 
 export default App;

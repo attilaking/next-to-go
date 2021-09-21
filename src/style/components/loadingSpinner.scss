@@ -1,0 +1,99 @@
+.loadingSpinnerCont {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+
+  &__error {
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    padding: 20px 30px 20px 30px;
+  }
+
+  .dot-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: none;
+  }
+
+  .dot-grid div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    animation: dot-grid 1.2s linear infinite;
+  }
+
+  .dot-grid div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+  }
+
+  .dot-grid div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+  }
+
+  .dot-grid div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+  }
+
+  .dot-grid div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+  }
+
+  .dot-grid div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+  }
+
+  .dot-grid div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+  }
+
+  .dot-grid div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+  }
+
+  .dot-grid div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+  }
+
+  .dot-grid div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+  }
+
+  @keyframes dot-grid {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
